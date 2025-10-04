@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Déclencheur Selfie</title>
+  </head>
+  <body>
+    <h1>Active ta caméra selfie</h1>
+    <button onclick="startCamera()">Ouvrir la caméra</button>
+    <video id="video" autoplay playsinline></video>
+
+    <script>
+      async function startCamera() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" },
+            audio: false
+          });
+          document.getElementById("video").srcObject = stream;
+        } catch (err) {
+          alert("Erreur d'accès à la caméra : " + err);
+        }
+      }
+    </script>
+  </body>
+</html>
